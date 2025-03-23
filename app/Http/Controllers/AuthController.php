@@ -37,9 +37,9 @@ class AuthController extends Controller
 
         // Attempt to log the user in
         if (Auth::attempt($credentials)) {
-            // Regenerate session to prevent fixation
+            // Regenerate session to prevent fixation attacks
             $request->session()->regenerate();
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
 
         // If login fails, redirect back with error
@@ -66,9 +66,9 @@ class AuthController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'name'                  => 'required|string|max:255',
-            'email'                 => 'required|email|unique:users,email',
-            'password'              => 'required|min:6|confirmed',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         // Create the user record in the database
@@ -82,11 +82,11 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('home');
+        return redirect()->route('dashboard');
     }
 
     /**
-     * Logout the user.
+     * Logout the user and redirect to home.
      *
      * @param  Request  $request
      * @return RedirectResponse
@@ -99,6 +99,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route('home'); // Redirect to home after logout
     }
 }

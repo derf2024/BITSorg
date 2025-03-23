@@ -16,9 +16,9 @@
         /* Background image styling */
         body {
             background-color: #000;
-            background-image: url("{{ asset('assets/images/BITS.jpg') }}");
+            background-image: url("{{ asset('assets/images/BITS1.jpg') }}");
             background-size: cover;
-            background-position: 50% 90%;
+            background-position: 50% 80%;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #0ff;
@@ -45,6 +45,7 @@
             height: 40px;
             margin-right: 10px;
         }
+        
         .navbar-nav {
             display: flex;
             gap: 15px;
@@ -52,28 +53,52 @@
             padding: 0;
             margin: 0;
         }
-        .navbar-nav .nav-item {
-            display: inline;
-        }
-        .navbar-nav .nav-link {
+
+        /* Home, About, Contact Links */
+        .navbar-nav .nav-item .nav-link {
+            font-size: 1.2rem;
             color: #0ff;
-            font-size: 1.1rem;
             text-decoration: none;
             padding: 8px 15px;
             transition: 0.3s;
-            text-align: justify;
+            position: relative;
         }
-        .navbar-nav .nav-link:hover {
+        .navbar-nav .nav-item .nav-link:hover {
             color: #fff;
+            text-shadow: 0px 0px 8px #0ff;
+        }
+        .navbar-nav .nav-item .nav-link::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #0ff;
+            transition: width 0.3s ease-in-out;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .navbar-nav .nav-item .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Login and Register Buttons */
+        .login-register {
+            font-size: 1.3rem;
+            padding: 10px 20px;
+            border: 2px solid #0ff;
+            border-radius: 5px;
             text-shadow: 0px 0px 5px #0ff;
+            transition: 0.3s;
         }
-        .navbar-toggler {
-            border: 1px solid #0ff;
+        .login-register:hover {
+            background: #0ff;
+            color: #000 !important;
+            text-shadow: none;
+            box-shadow: 0px 0px 15px #0ff;
         }
-        .navbar-toggler-icon {
-            filter: invert(100%);
-        }
-        
+
         /* Content Wrapper */
         .content-wrapper {
             background-color: rgba(0, 0, 0, 0.8);
@@ -97,13 +122,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                     @guest
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link login-register" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link login-register" href="{{ route('register') }}">Register</a></li>
                     @else
-                        <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link login-register" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link login-register" href="{{ route('register') }}">Register</a></li>
                     @endguest
                 </ul>
             </div>
@@ -113,7 +139,7 @@
     <div class="container mt-4">
         <div class="content-wrapper">
             @yield('content')
-        </div>
+        </div>  
     </div>
     
     <!-- Bootstrap JS Bundle -->
