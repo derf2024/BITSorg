@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BITS Organization - Cyber Blue Navbar</title>
+    <title>BITS (SLSU BONTOC)</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/SLSU.png') }}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
     <style>
         /* Background image styling */
         body {
@@ -17,6 +23,7 @@
             background-attachment: fixed;
             color: #0ff;
             font-family: 'Courier New', monospace;
+            text-align: justify;
         }
         
         /* Cyber Blue Navbar */
@@ -54,6 +61,7 @@
             text-decoration: none;
             padding: 8px 15px;
             transition: 0.3s;
+            text-align: justify;
         }
         .navbar-nav .nav-link:hover {
             color: #fff;
@@ -72,6 +80,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 15px #0ff;
+            text-align: justify;
         }
     </style>
 </head>
@@ -88,8 +97,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">AboutUs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">ContactUs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
                     @guest
                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>

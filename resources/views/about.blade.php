@@ -2,28 +2,21 @@
 
 @section('content')
     <h1>About Us</h1>
-    <p>Southern Leyte State University (SLSU) - Bontoc Campus is one of the six campuses of SLSU, located in Bontoc, Southern Leyte. It houses the College of Aquatic and Applied Life Sciences (CAALS) and is dedicated to developing comprehensive curricula to produce leaders and professionals in the fields of Agriculture, Fisheries, and Marine Biology. The campus offers degree programs in.</p>
+    <p>Southern Leyte State University - Bontoc Campus</p>
 
     <p>
-    	* BS in Fisheries​
+    	Department of Information Technology
     </p>
     <p>
-    	* BS in Agriculture
+    	At SLSU Bontoc Campus, the Department of Information Technology (IT) is dedicated to fostering innovation, technical excellence, and digital transformation. Our program is designed to equip students with the knowledge, skills, and hands-on experience needed to thrive in the fast-evolving world of technology.
     </p>
     <p>
-    	* BS in Marine Biology
+    	We focus on software development, cybersecurity, networking, artificial intelligence, and IT infrastructure management, ensuring that our graduates are well-prepared for industry challenges. Our faculty members are committed to delivering cutting-edge education, engaging students in real-world projects, research, and collaborations with industry leaders.
     </p>
     <p>
-    	* Bachelor of Agricultural Technology​
+    	Through state-of-the-art facilities, industry-aligned curricula, and strong community engagement, we empower future IT professionals to create innovative solutions that address real-world problems. At SLSU Bontoc IT, we shape the next generation of tech leaders who will drive progress in both local and global industries.
     </p>
     <p>
-    	* BS in Information Technology​
-    </p>
-
-    <p>
-    	As a recognized Provincial Institute for Agriculture and Fisheries (PIAF), Bontoc Campus is equipped with facilities such as a Multi-Species Hatchery, freshwater ponds for tilapia grow-out culture, and brackish water ponds for milkfish culture. The campus also supports research through the Bioresource Production Technology Center (BioProTeC), which houses laboratories in chemistry, microbiology, genomics, and tissue culture. 
-    </p>
-    <p>
-    	Recent initiatives include a partnership with the Bureau of Fisheries and Aquatic Resources Regional Fisheries Office 8 (BFAR RFO 8) to boost sea cucumber ranching, aiming to promote sustainable aquaculture and empower local fisherfolk.
+    	Join us and be part of the future of IT!
     </p>
 @endsection
