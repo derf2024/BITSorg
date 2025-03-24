@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard with Improved Sidebar</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -50,7 +50,6 @@
     .sidebar ul li:hover {
       background: #444;
     }
-
     /* Hamburger Button */
     .hamburger {
       position: absolute;
@@ -67,7 +66,6 @@
     .hamburger.active {
       color: white;
     }
-
     /* Main Content */
     .main-content {
       flex-grow: 1;
@@ -79,13 +77,11 @@
     .main-content.shift {
       margin-left: 250px;
     }
-
     /* Dashboard Header */
     .dashboard-header {
       text-align: center;
       margin-bottom: 30px;
     }
-
     /* Responsive */
     @media (max-width: 768px) {
       .sidebar {
@@ -111,7 +107,6 @@
   </style>
 </head>
 <body>
-
   <!-- Hamburger Button -->
   <button class="hamburger" id="menuToggle"><i class="bi bi-list"></i></button>
 
@@ -132,29 +127,30 @@
     </div>
     <div class="container">
       <div class="row g-3">
+        <!-- Sample images -->
         <div class="col-12 col-sm-6 col-md-4">
-          <img src="assets/images/image1.jpg" class="img-fluid rounded" alt="Image 1">
+          <img src="assets/images/image1.jpg" class="img-fluid rounded" alt="Image 1" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-          <img src="assets/images/image2.jpg" class="img-fluid rounded" alt="Image 2">
+          <img src="assets/images/image2.jpg" class="img-fluid rounded" alt="Image 2" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-          <img src="assets/images/image3.jpg" class="img-fluid rounded" alt="Image 3">
+          <img src="assets/images/image3.jpg" class="img-fluid rounded" alt="Image 3" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-          <img src="assets/images/image4.jpg" class="img-fluid rounded" alt="Image 4">
+          <img src="assets/images/image4.jpg" class="img-fluid rounded" alt="Image 4" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-          <img src="assets/images/image5.jpg" class="img-fluid rounded" alt="Image 5">
+          <img src="assets/images/image5.jpg" class="img-fluid rounded" alt="Image 5" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-          <img src="assets/images/image6.jpg" class="img-fluid rounded" alt="Image 6">
+          <img src="assets/images/image6.jpg" class="img-fluid rounded" alt="Image 6" />
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Profile Modal -->
+  <!-- Profile Modal with CRUD functionalities -->
   <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -166,19 +162,23 @@
           <form id="profileForm">
             <div class="mb-3">
               <label for="userName" class="form-label">Name</label>
-              <input type="text" class="form-control" id="userName">
+              <input type="text" class="form-control" id="userName" placeholder="Enter your name" />
             </div>
             <div class="mb-3">
               <label for="userEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="userEmail">
+              <input type="email" class="form-control" id="userEmail" placeholder="Enter your email" />
             </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+              <button type="button" id="deleteProfile" class="btn btn-danger">Delete Profile</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     $(document).ready(function() {
@@ -186,7 +186,7 @@
       $('#menuToggle').click(function() {
         $('#sidebar').toggleClass('active');
         $('#mainContent').toggleClass('shift');
-        $(this).toggleClass('active'); // Change color of the hamburger icon
+        $(this).toggleClass('active');
       });
 
       // Logout function
@@ -199,25 +199,41 @@
         }
       });
 
-      // Open profile modal
+      // Open profile modal and load existing data
       $('#editProfile').click(function() {
         $('#profileModal').modal('show');
         $('#userName').val(localStorage.getItem('userName') || '');
         $('#userEmail').val(localStorage.getItem('userEmail') || '');
       });
 
-      // Save profile changes
+      // Save profile changes (Update/Create)
       $('#profileForm').submit(function(e) {
         e.preventDefault();
-        var name = $('#userName').val();
-        var email = $('#userEmail').val();
+        var name = $('#userName').val().trim();
+        var email = $('#userEmail').val().trim();
+        if(name === '' || email === '') {
+          alert('Both name and email are required.');
+          return;
+        }
         localStorage.setItem('userName', name);
         localStorage.setItem('userEmail', email);
         alert('Profile updated successfully!');
         $('#profileModal').modal('hide');
       });
+
+      // Delete profile (Delete)
+      $('#deleteProfile').click(function() {
+        if(confirm('Are you sure you want to delete your profile? This action cannot be undone.')) {
+          localStorage.removeItem('userName');
+          localStorage.removeItem('userEmail');
+          // Clear the form fields
+          $('#userName').val('');
+          $('#userEmail').val('');
+          alert('Profile deleted successfully!');
+          $('#profileModal').modal('hide');
+        }
+      });
     });
   </script>
-
 </body>
 </html>
