@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard with Editable Profile</title>
+  <title>Dashboard with Improved Sidebar</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     body {
@@ -14,16 +15,18 @@
       background-color: #f8f9fa;
       margin: 0;
     }
+    /* Sidebar */
     .sidebar {
       width: 250px;
       height: 100vh;
-      background: #333;
+      background: #222;
       color: white;
       position: fixed;
       top: 0;
       left: -250px;
-      transition: left 0.3s ease-in-out;
+      transition: left 0.4s ease-in-out;
       padding-top: 60px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     }
     .sidebar.active {
       left: 0;
@@ -34,39 +37,56 @@
     }
     .sidebar ul li {
       padding: 15px;
-      text-align: center;
-      border-bottom: 1px solid #555;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s ease-in-out;
+    }
+    .sidebar ul li i {
+      font-size: 20px;
     }
     .sidebar ul li:hover {
       background: #444;
     }
+
+    /* Hamburger Button */
     .hamburger {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 15px;
+      left: 15px;
       background: none;
       border: none;
-      color: black;
       font-size: 24px;
       cursor: pointer;
       z-index: 1000;
+      transition: color 0.3s ease-in-out;
+      color: black;
     }
+    .hamburger.active {
+      color: white;
+    }
+
+    /* Main Content */
     .main-content {
       flex-grow: 1;
-      transition: margin-left 0.3s ease-in-out;
+      transition: margin-left 0.4s ease-in-out;
       width: 100%;
-      margin-left: 0;
       padding: 20px;
       overflow-y: auto;
     }
     .main-content.shift {
       margin-left: 250px;
     }
+
+    /* Dashboard Header */
     .dashboard-header {
       text-align: center;
       margin-bottom: 30px;
     }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .sidebar {
         width: 200px;
@@ -91,18 +111,24 @@
   </style>
 </head>
 <body>
-  <button class="hamburger" id="menuToggle">☰</button>
+
+  <!-- Hamburger Button -->
+  <button class="hamburger" id="menuToggle"><i class="bi bi-list"></i></button>
+
+  <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <ul>
-      <li id="editProfile">Profile</li>
-      <li>Settings</li>
-      <li id="logout">Logout</li>
+      <li id="editProfile"><i class="bi bi-person-circle"></i> Profile</li>
+      <li><i class="bi bi-gear"></i> Settings</li>
+      <li id="logout"><i class="bi bi-box-arrow-right"></i> Logout</li>
     </ul>
   </div>
+
+  <!-- Main Content -->
   <div class="main-content" id="mainContent">
     <div class="dashboard-header">
       <h1>Welcome to the Dashboard</h1>
-      <p>This is a simple idea.</p>
+      <p>Enhanced sidebar experience!</p>
     </div>
     <div class="container">
       <div class="row g-3">
@@ -156,10 +182,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     $(document).ready(function() {
-      // Toggle sidebar
+      // Toggle sidebar and change hamburger color
       $('#menuToggle').click(function() {
         $('#sidebar').toggleClass('active');
         $('#mainContent').toggleClass('shift');
+        $(this).toggleClass('active'); // Change color of the hamburger icon
       });
 
       // Logout function
@@ -189,11 +216,8 @@
         alert('Profile updated successfully!');
         $('#profileModal').modal('hide');
       });
-
-      // Auto-load profile data
-      $('#userName').val(localStorage.getItem('userName') || '');
-      $('#userEmail').val(localStorage.getItem('userEmail') || '');
     });
   </script>
+
 </body>
 </html>
